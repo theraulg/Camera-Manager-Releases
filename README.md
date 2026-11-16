@@ -2,6 +2,10 @@
 
 Programa para Windows que encuentra automáticamente las cámaras IP de la red (Bosch, Hikvision, Dahua y compatibles con ONVIF) y permite verlas en vivo y configurarlas desde una sola ventana.
 
+## Página web
+
+https://theraulg.github.io/Camera-Manager-Releases/
+
 ## Descargar
 
 - **Programa:** en [Releases](https://github.com/theraulg/Camera-Manager-Releases/releases/latest) descarga `CameraManager.exe` (no necesita instalación).
