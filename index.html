@@ -6,7 +6,16 @@
 <title>Camera Manager · Tus cámaras IP en una sola ventana</title>
 <meta name="description" content="Programa gratuito para Windows que encuentra cámaras IP Bosch, Hikvision y Dahua, las muestra en vivo y permite configurarlas desde una sola ventana.">
 <link rel="icon" href="favicon.ico">
+<link rel="alternate" hreflang="es" href="https://theraulg.github.io/Camera-Manager-Releases/">
+<link rel="alternate" hreflang="en" href="https://theraulg.github.io/Camera-Manager-Releases/en/">
 <script>document.documentElement.classList.add("js")</script>
+<script>
+// Idioma: abre la página en inglés si se eligió «EN», o si el navegador no está en español y nadie eligió
+try {
+  const pick = localStorage.getItem("cm-lang");
+  if (pick === "en" || (!pick && !/^es\b/i.test(navigator.language || "es"))) location.replace("en/");
+} catch (e) {}
+</script>
 <meta property="og:title" content="Camera Manager">
 <meta property="og:description" content="Tus cámaras IP en una sola ventana. Gratis para Windows.">
 <meta property="og:image" content="assets/en-vivo.jpg">
@@ -96,6 +105,9 @@ section{padding:84px 0}
 .btn.paypal{background:#ffc439;color:#111}
 .btn.paypal:hover{background:#f2b52a}
 
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:13px}
+.lang a{padding:4px 10px;color:var(--ink2);text-decoration:none}
+.lang a[aria-current]{background:var(--ink);color:var(--bg)}
 footer{padding:40px 0 50px;color:var(--ink2);font-size:13.5px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
 footer a{text-decoration:none}
@@ -106,7 +118,7 @@ footer a{text-decoration:none}
 @media (prefers-reduced-motion: reduce){.js .reveal{opacity:1;transform:none;transition:none}}
 
 @media (max-width:860px){
-  nav a:not(.btn){display:none}
+  nav > a:not(.btn){display:none}
   .hero{padding-top:56px}
   .feature,.feature.flip{grid-template-columns:1fr;gap:26px}
   .feature.flip .text{order:0}
@@ -126,7 +138,8 @@ footer a{text-decoration:none}
     <nav>
       <a href="#funciones">Funciones</a>
       <a href="#descargar">Descargar</a>
-      <a href="Manual%20de%20usuario%20-%20Camera%20Manager%204.3.pdf">Manual</a>
+      <a href="Manual%20de%20usuario%20-%20Camera%20Manager%204.4.pdf">Manual</a>
+      <span class="lang"><a href="./" aria-current="true" lang="es">ES</a><a href="en/" lang="en" data-lang="en">EN</a></span>
       <a class="btn primary small" href="#donar">Apoyar</a>
     </nav>
   </div>
@@ -143,7 +156,7 @@ footer a{text-decoration:none}
         Descargar para Windows</a>
       <a class="btn ghost" href="#funciones">Ver cómo funciona</a>
     </div>
-    <div class="meta"><span class="ver">Versión 4.3</span> · Windows 10 y 11 · Sin instalación</div>
+    <div class="meta"><span class="ver">Versión 4.4</span> · Windows 10 y 11 · Sin instalación</div>
     <div class="shot reveal"><img src="assets/en-vivo.jpg" alt="Ventana principal de Camera Manager con la lista de cámaras y el video en vivo" width="1240" height="720"></div>
     <div class="brands"><span>Bosch</span><span>Hikvision</span><span>Dahua</span><span>ONVIF</span></div>
   </div>
@@ -199,7 +212,7 @@ footer a{text-decoration:none}
         <div class="tile"><b>Temas</b><span>Oscuro, claro o instala los tuyos.</span></div>
         <div class="tile"><b>Se actualiza solo</b><span>Descarga la nueva versión y verifica su huella.</span></div>
         <div class="tile"><b>Sin instalación</b><span>Un solo archivo .exe, listo para usar.</span></div>
-        <div class="tile"><b>En español</b><span>Con manual de usuario paso a paso.</span></div>
+        <div class="tile"><b>Español e inglés</b><span>Con manual de usuario paso a paso en los dos idiomas.</span></div>
       </div>
     </div>
   </section>
@@ -210,7 +223,7 @@ footer a{text-decoration:none}
         <h2>Descarga Camera Manager</h2>
         <p style="color:var(--ink2);margin:0">Gratis. Sin registro. Sin instalación.</p>
         <div class="facts">
-          <span>Versión <b class="ver-n">4.3</b></span>
+          <span>Versión <b class="ver-n">4.4</b></span>
           <span>Tamaño <b class="size">67 MB</b></span>
           <span>Publicado <b class="date">16/11/2026</b></span>
           <span>Windows <b>10 y 11</b></span>
@@ -219,7 +232,7 @@ footer a{text-decoration:none}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
           Descargar CameraManager.exe</a>
         <div class="links">
-          <a href="Manual%20de%20usuario%20-%20Camera%20Manager%204.3.pdf">Manual de usuario (PDF)</a>
+          <a href="Manual%20de%20usuario%20-%20Camera%20Manager%204.4.pdf">Manual de usuario (PDF)</a>
           <a href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest">Novedades</a>
           <a href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.exe.sha256">Huella SHA-256</a>
         </div>
@@ -268,6 +281,11 @@ fetch("https://api.github.com/repos/theraulg/Camera-Manager-Releases/releases/la
     if (d.published_at) document.querySelectorAll(".date").forEach(e =>
       e.textContent = new Date(d.published_at).toLocaleDateString("es-MX", {day: "2-digit", month: "2-digit", year: "numeric"}));
   }).catch(() => {});
+
+// Recordar el idioma elegido con el selector ES | EN
+document.querySelectorAll(".lang a").forEach(a => a.addEventListener("click", () => {
+  try { localStorage.setItem("cm-lang", a.getAttribute("lang")); } catch (e) {}
+}));
 
 // Animación suave al bajar
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), {threshold: .12});

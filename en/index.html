@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Camera Manager · Your IP cameras in one window</title>
+<meta name="description" content="Free Windows program that finds Bosch, Hikvision and Dahua IP cameras, shows them live and lets you configure them from a single window.">
+<link rel="icon" href="../favicon.ico">
+<link rel="alternate" hreflang="es" href="https://theraulg.github.io/Camera-Manager-Releases/">
+<link rel="alternate" hreflang="en" href="https://theraulg.github.io/Camera-Manager-Releases/en/">
+<script>document.documentElement.classList.add("js")</script>
+<meta property="og:title" content="Camera Manager">
+<meta property="og:description" content="Your IP cameras in one window. Free for Windows.">
+<meta property="og:image" content="../assets/en/en-vivo.jpg">
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f6f6f4; --ink:#111113; --ink2:#55555c; --line:#e7e6e1;
+  --accent:#c8102e; --accent2:#a50d26; --gold:#b08a2e; --shadow:0 24px 60px -20px rgba(0,0,0,.28);
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#0c0c0d; --bg2:#141416; --ink:#ededef; --ink2:#9a9aa2; --line:#242428; --gold:#c9a54c;
+         --shadow:0 24px 60px -20px rgba(0,0,0,.8); }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--ink);font:16px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;height:auto;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* barra superior */
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:12px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;font-size:17px}
+.brand img{width:28px;height:28px}
+.brand span{color:var(--gold)}
+nav{margin-left:auto;display:flex;gap:22px;align-items:center}
+nav a{text-decoration:none;color:var(--ink2);font-size:14.5px}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border-radius:999px;font-weight:600;font-size:15px;padding:12px 22px;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent2)}
+.btn.ghost{border:1px solid var(--line);color:var(--ink)}
+.btn.small{padding:8px 16px;font-size:14px}
+.btn svg{width:18px;height:18px}
+
+/* portada */
+.hero{padding:88px 0 40px;text-align:center}
+.eyebrow{display:inline-block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+h1{font-size:clamp(34px,6vw,58px);line-height:1.08;letter-spacing:-.02em;margin:0 auto 18px;max-width:820px}
+.lead{font-size:clamp(17px,2.2vw,20px);color:var(--ink2);max-width:640px;margin:0 auto 30px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.meta{margin-top:16px;color:var(--ink2);font-size:13.5px}
+.shot{margin:56px auto 0;max-width:1040px;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#0b0b0c}
+
+/* marcas */
+.brands{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;color:var(--ink2);font-weight:600;font-size:15px;padding:44px 0 8px;letter-spacing:.02em}
+.brands span{opacity:.75}
+
+/* funciones destacadas */
+section{padding:84px 0}
+.feature{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:center}
+.feature + .feature{margin-top:110px}
+.feature.flip{grid-template-columns:1.25fr 1fr}
+.feature.flip .text{order:2}
+.feature h2{font-size:clamp(26px,3.4vw,36px);line-height:1.15;letter-spacing:-.015em;margin:0 0 14px}
+.feature p{color:var(--ink2);margin:0 0 16px;font-size:17px}
+.feature ul{margin:0;padding:0;list-style:none;color:var(--ink2);font-size:15px}
+.feature li{padding-left:22px;position:relative;margin:6px 0}
+.feature li:before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.feature > *,.grid > *{min-width:0}
+.frame{border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#0b0b0c}
+
+/* más funciones */
+.more{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.center{text-align:center}
+.center h2{font-size:clamp(26px,3.4vw,36px);letter-spacing:-.015em;margin:0 0 10px}
+.center p.sub{color:var(--ink2);margin:0 auto 40px;max-width:560px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.tile{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px}
+.tile b{display:block;font-size:15.5px;margin-bottom:4px}
+.tile span{color:var(--ink2);font-size:14px;line-height:1.5}
+
+/* descarga */
+.download{max-width:720px;margin:0 auto;text-align:center;border:1px solid var(--line);border-radius:18px;padding:44px 28px;background:var(--bg)}
+.download h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;margin:0 0 8px}
+.download .facts{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;color:var(--ink2);font-size:14px;margin:18px 0 28px}
+.download .facts b{color:var(--ink);font-weight:600}
+.links{margin-top:22px;font-size:14px;color:var(--ink2);display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.links a{text-decoration:none;border-bottom:1px solid var(--line)}
+.links a:hover{border-color:var(--ink2)}
+
+/* donar */
+.donate{display:flex;align-items:center;gap:28px;justify-content:space-between;flex-wrap:wrap;border-radius:18px;padding:34px 36px;background:linear-gradient(135deg,#141416,#1e1e22);color:#ededef}
+.donate h2{margin:0 0 6px;font-size:26px;letter-spacing:-.01em}
+.donate p{margin:0;color:#a8a8b0;max-width:560px}
+.btn.paypal{background:#ffc439;color:#111}
+.btn.paypal:hover{background:#f2b52a}
+
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:13px}
+.lang a{padding:4px 10px;color:var(--ink2);text-decoration:none}
+.lang a[aria-current]{background:var(--ink);color:var(--bg)}
+footer{padding:40px 0 50px;color:var(--ink2);font-size:13.5px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+footer a{text-decoration:none}
+
+/* aparecer al bajar */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+
+@media (max-width:860px){
+  nav > a:not(.btn){display:none}
+  .hero{padding-top:56px}
+  .feature,.feature.flip{grid-template-columns:1fr;gap:26px}
+  .feature.flip .text{order:0}
+  .feature + .feature{margin-top:70px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  section{padding:60px 0}
+  .donate{padding:28px 24px}
+}
+@media (max-width:480px){ .grid{grid-template-columns:1fr} .wrap{padding:0 16px} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#inicio"><img src="../assets/logo.png" alt=""> Camera <span>Manager</span></a>
+    <nav>
+      <a href="#funciones">Features</a>
+      <a href="#descargar">Download</a>
+      <a href="../User%20manual%20-%20Camera%20Manager%204.4.pdf">Manual</a>
+      <span class="lang"><a href="../" lang="es">ES</a><a href="./" aria-current="true" lang="en">EN</a></span>
+      <a class="btn primary small" href="#donar">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="wrap hero">
+    <div class="eyebrow">Free for Windows</div>
+    <h1>Your IP cameras, in one window.</h1>
+    <p class="lead">Camera Manager finds the cameras on your network by itself, lets you watch them live and configure them without opening each one's web page.</p>
+    <div class="cta">
+      <a class="btn primary dl" href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.exe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
+        Download for Windows</a>
+      <a class="btn ghost" href="#funciones">See how it works</a>
+    </div>
+    <div class="meta"><span class="ver">Version 4.4</span> · Windows 10 and 11 · No installation</div>
+    <div class="shot reveal"><img src="../assets/en/en-vivo.jpg" alt="Camera Manager main window with the camera list and live video" width="1240" height="736"></div>
+    <div class="brands"><span>Bosch</span><span>Hikvision</span><span>Dahua</span><span>ONVIF</span></div>
+  </div>
+
+  <section id="funciones">
+    <div class="wrap">
+      <div class="feature reveal">
+        <div class="text">
+          <h2>Watch them all at once.</h2>
+          <p>Open a 2×2, 3×3 or 4×4 mosaic with all your cameras live, or a single one full screen with up to 8× digital zoom.</p>
+          <ul><li>Smooth, low-latency video</li><li>PTZ and wiper control</li><li>One-click photos</li></ul>
+        </div>
+        <div class="frame"><img src="../assets/en/mosaico.jpg" alt="Mosaic with several live cameras" loading="lazy" width="1180" height="701"></div>
+      </div>
+
+      <div class="feature flip reveal">
+        <div class="text">
+          <h2>Configure without opening each web page.</h2>
+          <p>Network, video, image, on-screen text, time and recording, all from one place and with the options each camera supports.</p>
+          <ul><li>One-click backup and restore</li><li>Apply the time or a backup to several cameras</li><li>Restart with automatic reconnection</li></ul>
+        </div>
+        <div class="frame"><img src="../assets/en/configuracion.jpg" alt="Camera settings window" loading="lazy" width="860" height="614"></div>
+      </div>
+
+      <div class="feature reveal">
+        <div class="text">
+          <h2>Know what is wrong, instantly.</h2>
+          <p>Diagnostics checks the camera's route, ping and ports and tells you the most likely cause in one sentence: no power, no cable, another IP or a firewall.</p>
+          <ul><li>Works even if the camera won't connect</li><li>Result ready to copy and send</li></ul>
+        </div>
+        <div class="frame"><img src="../assets/en/diagnostico.jpg" alt="Network diagnostics of a camera" loading="lazy" width="760" height="540"></div>
+      </div>
+
+      <div class="feature flip reveal">
+        <div class="text">
+          <h2>Spot dirty lenses or moved cameras.</h2>
+          <p>Image check takes a photo from every camera and warns if any is black, covered, dark, blurry or if its view changed compared to the reference.</p>
+        </div>
+        <div class="frame"><img src="../assets/en/revision-imagen.jpg" alt="Image check of all the cameras" loading="lazy" width="900" height="620"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="more">
+    <div class="wrap center reveal">
+      <h2>And everything else you expect.</h2>
+      <p class="sub">Built for technicians who manage many cameras.</p>
+      <div class="grid" style="text-align:left">
+        <div class="tile"><b>Automatic search</b><span>ONVIF, SADP and ARP. Also adds cameras by IP.</span></div>
+        <div class="tile"><b>Online status</b><span>Checks every 15 s which cameras respond.</span></div>
+        <div class="tile"><b>Inventory</b><span>Exports name, IP, MAC, model and serial to Excel.</span></div>
+        <div class="tile"><b>Secure passwords</b><span>Stored encrypted in Windows.</span></div>
+        <div class="tile"><b>Themes</b><span>Dark, light, or install your own.</span></div>
+        <div class="tile"><b>Updates itself</b><span>Downloads the new version and verifies its checksum.</span></div>
+        <div class="tile"><b>No installation</b><span>A single .exe file, ready to use.</span></div>
+        <div class="tile"><b>English and Spanish</b><span>With a step-by-step user manual in both languages.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="descargar">
+    <div class="wrap">
+      <div class="download reveal">
+        <h2>Download Camera Manager</h2>
+        <p style="color:var(--ink2);margin:0">Free. No sign-up. No installation.</p>
+        <div class="facts">
+          <span>Version <b class="ver-n">4.4</b></span>
+          <span>Size <b class="size">67 MB</b></span>
+          <span>Released <b class="date">11/16/2026</b></span>
+          <span>Windows <b>10 and 11</b></span>
+        </div>
+        <a class="btn primary dl" href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.exe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
+          Download CameraManager.exe</a>
+        <div class="links">
+          <a href="../User%20manual%20-%20Camera%20Manager%204.4.pdf">User manual (PDF)</a>
+          <a href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest">Release notes</a>
+          <a href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.exe.sha256">SHA-256 checksum</a>
+        </div>
+        <p style="color:var(--ink2);font-size:13px;margin:22px 0 0">If Windows shows «Windows protected your PC», click <b>More info → Run anyway</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="donar" style="padding-top:0">
+    <div class="wrap">
+      <div class="donate reveal">
+        <div>
+          <h2>Does it save you time?</h2>
+          <p>Camera Manager is free and I will keep improving it. If you find it useful, you can support its development with any amount you like.</p>
+        </div>
+        <a class="btn paypal" id="paypal" href="https://paypal.me/theraulg" target="_blank" rel="noopener">Donate with PayPal</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 José Raúl González De La Cruz</span>
+    <span><a href="https://github.com/theraulg/Camera-Manager-Releases/releases">All versions</a></span>
+  </div>
+</footer>
+
+<script>
+// Enlace de donaciones de PayPal (por ejemplo https://www.paypal.com/donate/?hosted_button_id=XXXX
+// o https://paypal.me/tu-usuario). Mientras esté vacío, el botón no lleva a ningún lado.
+const PAYPAL_URL = "https://paypal.me/theraulg";
+const pp = document.getElementById("paypal");
+if (PAYPAL_URL) pp.href = PAYPAL_URL; else pp.removeAttribute("target");
+
+// Versión, tamaño y fecha reales de la última publicación en GitHub
+fetch("https://api.github.com/repos/theraulg/Camera-Manager-Releases/releases/latest")
+  .then(r => r.ok ? r.json() : null)
+  .then(d => {
+    if (!d) return;
+    const v = String(d.tag_name || "").replace(/^v/i, "");
+    const exe = (d.assets || []).find(a => /\.exe$/i.test(a.name));
+    if (v) { document.querySelectorAll(".ver").forEach(e => e.textContent = "Version " + v);
+             document.querySelectorAll(".ver-n").forEach(e => e.textContent = v); }
+    if (exe) document.querySelectorAll(".size").forEach(e => e.textContent = Math.round(exe.size / 1048576) + " MB");
+    if (d.published_at) document.querySelectorAll(".date").forEach(e =>
+      e.textContent = new Date(d.published_at).toLocaleDateString("en-US", {day: "2-digit", month: "2-digit", year: "numeric"}));
+  }).catch(() => {});
+
+// Recordar el idioma elegido con el selector ES | EN
+document.querySelectorAll(".lang a").forEach(a => a.addEventListener("click", () => {
+  try { localStorage.setItem("cm-lang", a.getAttribute("lang")); } catch (e) {}
+}));
+
+// Animación suave al bajar
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), {threshold: .12});
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
