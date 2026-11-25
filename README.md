@@ -9,8 +9,8 @@ https://theraulg.github.io/Camera-Manager-Releases/
 ## Descargar
 
 - **Programa:** en [Releases](https://github.com/theraulg/Camera-Manager-Releases/releases/latest) descarga el instalador `CameraManager.msi` y ábrelo (pide permiso de administrador).
-- **Manual de usuario (PDF):** [Manual de usuario - Camera Manager 4.4.pdf](Manual%20de%20usuario%20-%20Camera%20Manager%204.4.pdf)
-- **User manual in English (PDF):** [User manual - Camera Manager 4.4.pdf](User%20manual%20-%20Camera%20Manager%204.4.pdf)
+- **Manual de usuario (PDF):** [Manual de usuario - Camera Manager 6.0.0.pdf](Manual%20de%20usuario%20-%20Camera%20Manager%206.0.0.pdf)
+- **User manual in English (PDF):** [User manual - Camera Manager 6.0.0.pdf](User%20manual%20-%20Camera%20Manager%206.0.0.pdf)
 
 ## Actualizaciones
 
