@@ -151,12 +151,12 @@ footer a{text-decoration:none}
     <h1>Tus cámaras IP, en una sola ventana.</h1>
     <p class="lead">Camera Manager encuentra solo las cámaras de tu red, te deja verlas en vivo y configurarlas sin entrar a la página web de cada una.</p>
     <div class="cta">
-      <a class="btn primary dl" href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.exe">
+      <a class="btn primary dl" href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.msi">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
         Descargar para Windows</a>
       <a class="btn ghost" href="#funciones">Ver cómo funciona</a>
     </div>
-    <div class="meta"><span class="ver">Versión 4.4</span> · Windows 10 y 11 · Sin instalación</div>
+    <div class="meta"><span class="ver">Versión 4.4</span> · Windows 10 y 11 · Instalador MSI</div>
     <div class="shot reveal"><img src="assets/en-vivo.jpg" alt="Ventana principal de Camera Manager con la lista de cámaras y el video en vivo" width="1240" height="720"></div>
     <div class="brands"><span>Bosch</span><span>Hikvision</span><span>Dahua</span><span>ONVIF</span></div>
   </div>
@@ -211,7 +211,7 @@ footer a{text-decoration:none}
         <div class="tile"><b>Contraseñas seguras</b><span>Guardadas cifradas en Windows.</span></div>
         <div class="tile"><b>Temas</b><span>Oscuro, claro o instala los tuyos.</span></div>
         <div class="tile"><b>Se actualiza solo</b><span>Descarga la nueva versión y verifica su huella.</span></div>
-        <div class="tile"><b>Sin instalación</b><span>Un solo archivo .exe, listo para usar.</span></div>
+        <div class="tile"><b>Instalador MSI</b><span>Se instala en Archivos de programa, con acceso en el menú Inicio y el escritorio.</span></div>
         <div class="tile"><b>Español e inglés</b><span>Con manual de usuario paso a paso en los dos idiomas.</span></div>
       </div>
     </div>
@@ -221,22 +221,22 @@ footer a{text-decoration:none}
     <div class="wrap">
       <div class="download reveal">
         <h2>Descarga Camera Manager</h2>
-        <p style="color:var(--ink2);margin:0">Gratis. Sin registro. Sin instalación.</p>
+        <p style="color:var(--ink2);margin:0">Gratis. Sin registro.</p>
         <div class="facts">
           <span>Versión <b class="ver-n">4.4</b></span>
           <span>Tamaño <b class="size">67 MB</b></span>
           <span>Publicado <b class="date">16/11/2026</b></span>
           <span>Windows <b>10 y 11</b></span>
         </div>
-        <a class="btn primary dl" href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.exe">
+        <a class="btn primary dl" href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.msi">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
-          Descargar CameraManager.exe</a>
+          Descargar CameraManager.msi</a>
         <div class="links">
           <a href="Manual%20de%20usuario%20-%20Camera%20Manager%204.4.pdf">Manual de usuario (PDF)</a>
           <a href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest">Novedades</a>
-          <a href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.exe.sha256">Huella SHA-256</a>
+          <a href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.msi.sha256">Huella SHA-256</a>
         </div>
-        <p style="color:var(--ink2);font-size:13px;margin:22px 0 0">Si Windows muestra «Windows protegió su PC», pulsa <b>Más información → Ejecutar de todas formas</b>.</p>
+        <p style="color:var(--ink2);font-size:13px;margin:22px 0 0">Abre el archivo .msi y acepta el permiso de administrador. Si Windows muestra «Windows protegió su PC», pulsa <b>Más información → Ejecutar de todas formas</b>.</p>
       </div>
     </div>
   </section>
@@ -274,7 +274,7 @@ fetch("https://api.github.com/repos/theraulg/Camera-Manager-Releases/releases/la
   .then(d => {
     if (!d) return;
     const v = String(d.tag_name || "").replace(/^v/i, "");
-    const exe = (d.assets || []).find(a => /\.exe$/i.test(a.name));
+    const exe = (d.assets || []).find(a => /\.msi$/i.test(a.name));
     if (v) { document.querySelectorAll(".ver").forEach(e => e.textContent = "Versión " + v);
              document.querySelectorAll(".ver-n").forEach(e => e.textContent = v); }
     if (exe) document.querySelectorAll(".size").forEach(e => e.textContent = Math.round(exe.size / 1048576) + " MB");

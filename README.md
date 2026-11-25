@@ -8,7 +8,7 @@ https://theraulg.github.io/Camera-Manager-Releases/
 
 ## Descargar
 
-- **Programa:** en [Releases](https://github.com/theraulg/Camera-Manager-Releases/releases/latest) descarga `CameraManager.exe` (no necesita instalación).
+- **Programa:** en [Releases](https://github.com/theraulg/Camera-Manager-Releases/releases/latest) descarga el instalador `CameraManager.msi` y ábrelo (pide permiso de administrador).
 - **Manual de usuario (PDF):** [Manual de usuario - Camera Manager 4.4.pdf](Manual%20de%20usuario%20-%20Camera%20Manager%204.4.pdf)
 - **User manual in English (PDF):** [User manual - Camera Manager 4.4.pdf](User%20manual%20-%20Camera%20Manager%204.4.pdf)
 
@@ -18,4 +18,4 @@ Las versiones instaladas se actualizan solas desde **Acerca de → Buscar actual
 
 ---
 
-**English:** Windows program that automatically finds the IP cameras on the network (Bosch, Hikvision, Dahua and ONVIF-compatible) and lets you watch and configure them from a single window. Website: https://theraulg.github.io/Camera-Manager-Releases/en/ · Download `CameraManager.exe` from [Releases](https://github.com/theraulg/Camera-Manager-Releases/releases/latest).
+**English:** Windows program that automatically finds the IP cameras on the network (Bosch, Hikvision, Dahua and ONVIF-compatible) and lets you watch and configure them from a single window. Website: https://theraulg.github.io/Camera-Manager-Releases/en/ · Download the `CameraManager.msi` installer from [Releases](https://github.com/theraulg/Camera-Manager-Releases/releases/latest).

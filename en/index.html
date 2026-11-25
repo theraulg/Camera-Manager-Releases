@@ -144,12 +144,12 @@ footer a{text-decoration:none}
     <h1>Your IP cameras, in one window.</h1>
     <p class="lead">Camera Manager finds the cameras on your network by itself, lets you watch them live and configure them without opening each one's web page.</p>
     <div class="cta">
-      <a class="btn primary dl" href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.exe">
+      <a class="btn primary dl" href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.msi">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
         Download for Windows</a>
       <a class="btn ghost" href="#funciones">See how it works</a>
     </div>
-    <div class="meta"><span class="ver">Version 4.4</span> · Windows 10 and 11 · No installation</div>
+    <div class="meta"><span class="ver">Version 4.4</span> · Windows 10 and 11 · MSI installer</div>
     <div class="shot reveal"><img src="../assets/en/en-vivo.jpg" alt="Camera Manager main window with the camera list and live video" width="1240" height="736"></div>
     <div class="brands"><span>Bosch</span><span>Hikvision</span><span>Dahua</span><span>ONVIF</span></div>
   </div>
@@ -204,7 +204,7 @@ footer a{text-decoration:none}
         <div class="tile"><b>Secure passwords</b><span>Stored encrypted in Windows.</span></div>
         <div class="tile"><b>Themes</b><span>Dark, light, or install your own.</span></div>
         <div class="tile"><b>Updates itself</b><span>Downloads the new version and verifies its checksum.</span></div>
-        <div class="tile"><b>No installation</b><span>A single .exe file, ready to use.</span></div>
+        <div class="tile"><b>MSI installer</b><span>Installs in Program Files, with Start menu and desktop shortcuts.</span></div>
         <div class="tile"><b>English and Spanish</b><span>With a step-by-step user manual in both languages.</span></div>
       </div>
     </div>
@@ -214,22 +214,22 @@ footer a{text-decoration:none}
     <div class="wrap">
       <div class="download reveal">
         <h2>Download Camera Manager</h2>
-        <p style="color:var(--ink2);margin:0">Free. No sign-up. No installation.</p>
+        <p style="color:var(--ink2);margin:0">Free. No sign-up.</p>
         <div class="facts">
           <span>Version <b class="ver-n">4.4</b></span>
           <span>Size <b class="size">67 MB</b></span>
           <span>Released <b class="date">11/16/2026</b></span>
           <span>Windows <b>10 and 11</b></span>
         </div>
-        <a class="btn primary dl" href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.exe">
+        <a class="btn primary dl" href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.msi">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
-          Download CameraManager.exe</a>
+          Download CameraManager.msi</a>
         <div class="links">
           <a href="../User%20manual%20-%20Camera%20Manager%204.4.pdf">User manual (PDF)</a>
           <a href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest">Release notes</a>
-          <a href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.exe.sha256">SHA-256 checksum</a>
+          <a href="https://github.com/theraulg/Camera-Manager-Releases/releases/latest/download/CameraManager.msi.sha256">SHA-256 checksum</a>
         </div>
-        <p style="color:var(--ink2);font-size:13px;margin:22px 0 0">If Windows shows «Windows protected your PC», click <b>More info → Run anyway</b>.</p>
+        <p style="color:var(--ink2);font-size:13px;margin:22px 0 0">Open the .msi file and accept the administrator prompt. If Windows shows «Windows protected your PC», click <b>More info → Run anyway</b>.</p>
       </div>
     </div>
   </section>
@@ -267,7 +267,7 @@ fetch("https://api.github.com/repos/theraulg/Camera-Manager-Releases/releases/la
   .then(d => {
     if (!d) return;
     const v = String(d.tag_name || "").replace(/^v/i, "");
-    const exe = (d.assets || []).find(a => /\.exe$/i.test(a.name));
+    const exe = (d.assets || []).find(a => /\.msi$/i.test(a.name));
     if (v) { document.querySelectorAll(".ver").forEach(e => e.textContent = "Version " + v);
              document.querySelectorAll(".ver-n").forEach(e => e.textContent = v); }
     if (exe) document.querySelectorAll(".size").forEach(e => e.textContent = Math.round(exe.size / 1048576) + " MB");
